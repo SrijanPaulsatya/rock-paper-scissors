@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function indexGenerator () {
+            let index = Math.floor(Math.random() * 10);
+            if (index < 3) {
+                return index;
+            }
+            else { 
+                return indexGenerator();
+            }
+        }
+        let index = indexGenerator();
+        function getComputerChoice () {
+            let options = ["Rock","Paper","Scissors"];
+            let computerChoice = options[index];
+            return computerChoice;
+        }
+
+        let computerSelection = getComputerChoice();
+        let playerSelection = prompt("Rock! Paper! Scissor!? Choose yours: ")
+
+        function game (playerSelection, computerSelection) {
+            playerSelection = playerSelection.toLowerCase();
+            computerSelection = computerSelection.toLowerCase();
+            if ((playerSelection === "rock" && computerSelection === "scissors")|| 
+                (playerSelection === "paper" && computerSelection === "rock") ||
+                (playerSelection === "scissors" && computerSelection === "paper")) {
+                    return (`Let's go You Win!! ${playerSelection} beats ${computerSelection}`);
+            }
+            else if (playerSelection === computerSelection) {
+                return ("That's a tie GGs");
+            }
+            else {
+                return (`You Lose! ${computerSelection} beats ${playerSelection}`);
+            }
+            
+        }
+
+        console.log(game(playerSelection, computerSelection))
+    </script>
+    
+</body>
+</html>
