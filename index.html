@@ -23,27 +23,64 @@
             return computerChoice;
         }
 
-        let computerSelection = getComputerChoice();
-        let playerSelection = prompt("Rock! Paper! Scissor!? Choose yours: ")
+        
 
-        function game (playerSelection, computerSelection) {
+        function playRound (playerSelection, computerSelection) {
             playerSelection = playerSelection.toLowerCase();
             computerSelection = computerSelection.toLowerCase();
             if ((playerSelection === "rock" && computerSelection === "scissors")|| 
                 (playerSelection === "paper" && computerSelection === "rock") ||
                 (playerSelection === "scissors" && computerSelection === "paper")) {
-                    return (`Let's go You Win!! ${playerSelection} beats ${computerSelection}`);
+                    return 'Player Won';
             }
             else if (playerSelection === computerSelection) {
-                return ("That's a tie GGs");
+                return 'Tie';
             }
             else {
-                return (`You Lose! ${computerSelection} beats ${playerSelection}`);
+                 return 'Computer Won';
             }
             
         }
+        
+        function game () {
+            let playerScore = 0;
+            let computerScore = 0;
+            for (let i = 1; i <= 5; i++) {
+                let computerSelection = getComputerChoice();
+                let playerSelection = prompt("Rock! Paper! Scissor!? Choose yours: ")
+                let gameRound = playRound(playerSelection,computerSelection);
+                if (gameRound === 'Player Won') {
+                    playerScore += 1;
+                    console.log(`Let's go You Win!! ${playerSelection} beats ${computerSelection}`);
+                }
+                else if (gameRound === 'Computer Won') {
+                    computerScore += 1;
+                    console.log(`You Lose! ${computerSelection} beats ${playerSelection}`);
+                }
+                else {
+                    playerScore += 0;
+                    computerScore += 0;
+                    console.log("That's a tie GGs");
+                }
+            }
+            if (playerScore > computerScore) {
+                console.log("You have won the game in the best of 5 rounds. GG's Well Played!");
+                return null;
+            }
 
-        console.log(game(playerSelection, computerSelection))
+            if (playerScore < computerScore) {
+                console.log("Computer has won the game in the best of 5 rounds. Better Luck next time!");
+                return null;
+            }
+
+            if (playerScore === computerScore) {
+                console.log("It was tie, in best of 5 rounds that's rare. You both were lucky")
+                return null;
+            }
+        }
+
+        console.log(game());
+
     </script>
     
 </body>
