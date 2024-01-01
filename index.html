@@ -4,84 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="script.js" defer></script>
 </head>
 <body>
-    <script>
-        function indexGenerator () {
-            let index = Math.floor(Math.random() * 10);
-            if (index < 3) {
-                return index;
-            }
-            else { 
-                return indexGenerator();
-            }
-        }
-        function getComputerChoice () {
-            let index = indexGenerator();
-            let options = ["Rock","Paper","Scissors"];
-            let computerChoice = options[index];
-            return computerChoice;
-        }
+    <button class="rock">Rock</button>
+    <button class="paper">Paper</button>
+    <button class="scissors">Scissors</button>
 
-        
+    <div class="scores"></div>
 
-        function playRound (playerSelection, computerSelection) {
-            playerSelection = playerSelection.toLowerCase();
-            computerSelection = computerSelection.toLowerCase();
-            if ((playerSelection === "rock" && computerSelection === "scissors")|| 
-                (playerSelection === "paper" && computerSelection === "rock") ||
-                (playerSelection === "scissors" && computerSelection === "paper")) {
-                    return 'Player Won';
-            }
-            else if (playerSelection === computerSelection) {
-                return 'Tie';
-            }
-            else {
-                 return 'Computer Won';
-            }
-            
-        }
-        
-        function game () {
-            let playerScore = 0;
-            let computerScore = 0;
-            for (let i = 1; i <= 5; i++) {
-                let computerSelection = getComputerChoice();
-                let playerSelection = prompt("Rock! Paper! Scissor!? Choose yours: ")
-                let gameRound = playRound(playerSelection,computerSelection);
-                if (gameRound === 'Player Won') {
-                    playerScore += 1;
-                    console.log(`Let's go You Win!! ${playerSelection} beats ${computerSelection}`);
-                }
-                else if (gameRound === 'Computer Won') {
-                    computerScore += 1;
-                    console.log(`You Lose! ${computerSelection} beats ${playerSelection}`);
-                }
-                else {
-                    playerScore += 0;
-                    computerScore += 0;
-                    console.log("That's a tie GGs");
-                }
-            }
-            if (playerScore > computerScore) {
-                console.log("You have won the game in the best of 5 rounds. GG's Well Played!");
-                return null;
-            }
-
-            if (playerScore < computerScore) {
-                console.log("Computer has won the game in the best of 5 rounds. Better Luck next time!");
-                return null;
-            }
-
-            if (playerScore === computerScore) {
-                console.log("It was tie, in best of 5 rounds that's rare. You both were lucky")
-                return null;
-            }
-        }
-
-        console.log(game());
-
-    </script>
-    
 </body>
 </html>
